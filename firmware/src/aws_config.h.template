@@ -1,0 +1,37 @@
+/* Copy to aws_config.h and fill in. aws_config.h is gitignored.
+ *
+ *   cp firmware/src/aws_config.h.template firmware/src/aws_config.h
+ *
+ * None of this is secret in the cryptographic sense, but the WiFi password is
+ * yours and the endpoint identifies your AWS account, so the filled-in file
+ * stays out of version control and out of the thesis appendix.
+ */
+#ifndef AWS_CONFIG_H
+#define AWS_CONFIG_H
+
+/* --- WiFi ------------------------------------------------------------- */
+#define WIFI_SSID       "your-network"
+#define WIFI_PASSWORD   "your-password"
+
+/* The CYW43 driver needs the right regulatory domain or the radio may refuse
+ * some channels. CYW43_COUNTRY_UK / _USA / _WORLDWIDE etc. */
+#define WIFI_COUNTRY    CYW43_COUNTRY_WORLDWIDE
+
+/* --- AWS IoT Core ------------------------------------------------------ */
+/* Settings -> Device data endpoint in the AWS IoT console. Must be the
+ * -ats. endpoint: the older non-ATS endpoints chain to a different root CA
+ * and will fail validation against AmazonRootCA1.pem. */
+#define AWS_IOT_ENDPOINT  "xxxxxxxxxxxxxx-ats.iot.eu-central-1.amazonaws.com"
+#define AWS_IOT_PORT      8883
+
+/* Must match the Thing name exactly, and must be permitted by the policy
+ * attached to the certificate. A mismatch here is refused as a client-id
+ * violation and looks exactly like a TLS failure from the device side. */
+#define AWS_THING_NAME    "pico-w-01"
+#define AWS_CLIENT_ID     AWS_THING_NAME
+
+/* Topics. These must be allowed by the certificate's policy. */
+#define TOPIC_WINDOW      "imu/" AWS_THING_NAME "/window"
+#define TOPIC_CORRECTION  "imu/" AWS_THING_NAME "/correction"
+
+#endif /* AWS_CONFIG_H */
