@@ -1,4 +1,7 @@
-# Serverless-in-the-Loop State Estimation for RTOS Aerospace Nodes
+# Offloading State Estimation from an RTOS Node to AWS Lambda
+
+*Measured on a Raspberry Pi Pico W: what it costs, how late the corrections
+arrive, and why that makes it an out-of-sequence measurement problem.*
 
 Bachelor's thesis testbed. Characterises the feasibility envelope of offloading
 inertial state estimation from a hard-real-time RTOS node (Raspberry Pi Pico W,
