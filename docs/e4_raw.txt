@@ -1,0 +1,143 @@
+
+[boot] E4 stage 1: AWS IoT connectivity test
+[wifi] connecting to "<ssid>" ...
+[wifi] ip = <lan-ip>
+[sntp] syncing clock (needed before certificate dates can be checked)
+[sntp] unix time = 1787436400
+[dns ] resolving <account-id>-ats.iot.eu-north-1.amazonaws.com
+[dns ] <aws-ip>
+[tcp ] plain TCP connect (baseline)
+[tls ] building 2-way-auth config from embedded PEM
+[tls ] connecting with SNI + client certificate ...
+
+========================================================================
+ E4 stage 1 - AWS IoT connectivity from Pico W
+========================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ thing    : picoW_thing
+ cert     : RSA-2048, 4086 B of PEM embedded in flash
+ clock    : unix 1787436414 (SNTP)
+
+ stage                                        ms   result  note
+ ---------------------------------- ------------ --------  ----
+ WiFi associate + DHCP                   5135.206       ok  
+ SNTP time sync                           124.665       ok  
+ DNS resolve                               48.609       ok  
+ plain TCP connect                         74.518       ok  network RTT baseline
+ parse PEM + build TLS config              20.073       ok  RSA-2048 key validation on M0+
+ TCP+TLS connect (handshake)             6202.888       ok  AWS accepted our certificate
+
+ TLS handshake alone      = 6128.370 ms  (TCP+TLS minus plain TCP)
+ of which the RSA-2048 private-key operation on a 125 MHz
+ Cortex-M0+ with no crypto accelerator is the dominant term.
+========================================================================
+
+========================================================================
+ E4 stage 1 - AWS IoT connectivity from Pico W
+========================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ thing    : picoW_thing
+ cert     : RSA-2048, 4086 B of PEM embedded in flash
+ clock    : unix 1787436424 (SNTP)
+
+ stage                                        ms   result  note
+ ---------------------------------- ------------ --------  ----
+ WiFi associate + DHCP                   5135.206       ok  
+ SNTP time sync                           124.665       ok  
+ DNS resolve                               48.609       ok  
+ plain TCP connect                         74.518       ok  network RTT baseline
+ parse PEM + build TLS config              20.073       ok  RSA-2048 key validation on M0+
+ TCP+TLS connect (handshake)             6202.888       ok  AWS accepted our certificate
+
+ TLS handshake alone      = 6128.370 ms  (TCP+TLS minus plain TCP)
+ of which the RSA-2048 private-key operation on a 125 MHz
+ Cortex-M0+ with no crypto accelerator is the dominant term.
+========================================================================
+
+========================================================================
+ E4 stage 1 - AWS IoT connectivity from Pico W
+========================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ thing    : picoW_thing
+ cert     : RSA-2048, 4086 B of PEM embedded in flash
+ clock    : unix 1787436434 (SNTP)
+
+ stage                                        ms   result  note
+ ---------------------------------- ------------ --------  ----
+ WiFi associate + DHCP                   5135.206       ok  
+ SNTP time sync                           124.665       ok  
+ DNS resolve                               48.609       ok  
+ plain TCP connect                         74.518       ok  network RTT baseline
+ parse PEM + build TLS config              20.073       ok  RSA-2048 key validation on M0+
+ TCP+TLS connect (handshake)             6202.888       ok  AWS accepted our certificate
+
+ TLS handshake alone      = 6128.370 ms  (TCP+TLS minus plain TCP)
+ of which the RSA-2048 private-key operation on a 125 MHz
+ Cortex-M0+ with no crypto accelerator is the dominant term.
+========================================================================
+
+========================================================================
+ E4 stage 1 - AWS IoT connectivity from Pico W
+========================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ thing    : picoW_thing
+ cert     : RSA-2048, 4086 B of PEM embedded in flash
+ clock    : unix 1787436444 (SNTP)
+
+ stage                                        ms   result  note
+ ---------------------------------- ------------ --------  ----
+ WiFi associate + DHCP                   5135.206       ok  
+ SNTP time sync                           124.665       ok  
+ DNS resolve                               48.609       ok  
+ plain TCP connect                         74.518       ok  network RTT baseline
+ parse PEM + build TLS config              20.073       ok  RSA-2048 key validation on M0+
+ TCP+TLS connect (handshake)             6202.888       ok  AWS accepted our certificate
+
+ TLS handshake alone      = 6128.370 ms  (TCP+TLS minus plain TCP)
+ of which the RSA-2048 private-key operation on a 125 MHz
+ Cortex-M0+ with no crypto accelerator is the dominant term.
+========================================================================
+
+========================================================================
+ E4 stage 1 - AWS IoT connectivity from Pico W
+========================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ thing    : picoW_thing
+ cert     : RSA-2048, 4086 B of PEM embedded in flash
+ clock    : unix 1787436454 (SNTP)
+
+ stage                                        ms   result  note
+ ---------------------------------- ------------ --------  ----
+ WiFi associate + DHCP                   5135.206       ok  
+ SNTP time sync                           124.665       ok  
+ DNS resolve                               48.609       ok  
+ plain TCP connect                         74.518       ok  network RTT baseline
+ parse PEM + build TLS config              20.073       ok  RSA-2048 key validation on M0+
+ TCP+TLS connect (handshake)             6202.888       ok  AWS accepted our certificate
+
+ TLS handshake alone      = 6128.370 ms  (TCP+TLS minus plain TCP)
+ of which the RSA-2048 private-key operation on a 125 MHz
+ Cortex-M0+ with no crypto accelerator is the dominant term.
+========================================================================
+
+========================================================================
+ E4 stage 1 - AWS IoT connectivity from Pico W
+========================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ thing    : picoW_thing
+ cert     : RSA-2048, 4086 B of PEM embedded in flash
+ clock    : unix 1787436464 (SNTP)
+
+ stage                                        ms   result  note
+ ---------------------------------- ------------ --------  ----
+ WiFi associate + DHCP                   5135.206       ok  
+ SNTP time sync                           124.665       ok  
+ DNS resolve                               48.609       ok  
+ plain TCP connect                         74.518       ok  network RTT baseline
+ parse PEM + build TLS config              20.073       ok  RSA-2048 key validation on M0+
+ TCP+TLS connect (handshake)             6202.888       ok  AWS accepted our certificate
+
+ TLS handshake alone      = 6128.370 ms  (TCP+TLS minus plain TCP)
+ of which the RSA-2048 private-key operation on a 125 MHz
+ Cortex-M0+ with no crypto accelerator is the dominant term.
+========================================================================

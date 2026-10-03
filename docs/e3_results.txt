@@ -1,0 +1,47 @@
+========================================================================
+ E3 - Cortex-M0+ compute profile (RP2040 / Pico W)
+========================================================================
+ clk_sys        : 125000000 Hz
+ timer          : SysTick, 1-cycle resolution
+ timing overhead: 2 cycles (subtracted)
+ budget @ 200 Hz: 5000000 ns per sample
+ build          : -O2, single precision unless stated
+
+ sparse vs dense predict: max relative difference 234 ppb (agree)
+
+ operation                          cycles           ns   % budget
+ ------------------------------ ---------- ------------ ----------
+
+ raw arithmetic (dependency chain)
+ float add                              83          664       0.01
+ float multiply                         69          552       0.01
+ float divide                          164         1312       0.02
+ float sqrtf                           162         1296       0.02
+ float sinf                            669         5352       0.10
+ double add                            108          864       0.01
+ double multiply                       185         1480       0.02
+
+ quaternion primitives
+ quat_mul                             2171        17368       0.34
+ quat_from_rotvec                     2230        17840       0.35
+ quat_to_dcm                          2471        19768       0.39
+
+ Tier 0 (must stay on device)
+ mahony_update                       10992        87936       1.75
+ strapdown_step                      10940        87520       1.75
+
+ ESKF (offload candidate)
+ mat_mul 15x15 (3375 MAC)           527245      4217960      84.35
+ predict dense (textbook)          1058726      8469808     169.39
+ predict sparse (block)             155952      1247616      24.95
+ update3 Joseph                    1521245     12169960     243.39
+ update3 short form                 282507      2260056      45.20
+
+ state-dimension scaling (dense n x n multiply, 2n^3 = predict)
+ n=15  (current ESKF)               527243      4217944      84.35
+ n=21  (+scale factors)            1446552     11572416     231.44
+ n=27  (+misalignment)             3063319     24506552     490.13
+ n=33  (+2nd IMU)                  5585978     44687824     893.75
+ n=39  (+magnetometer)             9201196     73609568    1472.19
+
+========================================================================

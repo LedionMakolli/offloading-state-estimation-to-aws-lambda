@@ -1,0 +1,38 @@
+========================================================================
+ E5 - Real-time deadline under TLS crypto load (FreeRTOS, RP2040)
+========================================================================
+ FreeRTOS      : V11.1.0, 1 core, tick 1000 Hz
+ RT task       : 200 Hz (period 5000 us), priority 5
+ load          : RSA-2048 private key op, priority 1
+ deadline slack: 1250 us (quarter period)
+ warm-up       : 200 samples discarded per phase
+ RSA-2048 ops  : 17 completed, mean 3584 ms, max 4223 ms
+
+ phase                           n   mean    p50    p99  p99.9     MAX  misses
+ ------------------------- ------- ------ ------ ------ ------ ------- -------
+ A baseline (RT alone)        2799      0      0      0      0       0       0
+ B contention (RT + RSA)     11799      0      0      0      4      10       0
+ C recovery (RT alone)        2799      0      0      0      0       0       0
+  (all latency values in microseconds)
+
+ phase                       period min   period max
+ ------------------------- ------------ ------------
+ A baseline (RT alone)            -1 us         2 us
+ B contention (RT + RSA)         -22 us        22 us
+ C recovery (RT alone)             0 us         1 us
+  (deviation of the measured period from the nominal 5000 us)
+
+ A baseline (RT alone)
+     latency distribution: [0-49 us: 2799] 
+     Tier-0 work: mean 179 us, max 223 us (of 5000 us budget)
+
+ B contention (RT + RSA)
+     latency distribution: [0-49 us: 11799] 
+     Tier-0 work: mean 180 us, max 319 us (of 5000 us budget)
+
+ C recovery (RT alone)
+     latency distribution: [0-49 us: 2799] 
+     Tier-0 work: mean 178 us, max 181 us (of 5000 us budget)
+
+ VERDICT: no deadline missed in any phase - preemption protected the RT loop
+========================================================================

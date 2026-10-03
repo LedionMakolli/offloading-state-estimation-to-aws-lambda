@@ -1,0 +1,39 @@
+E4b - is the round trip quantised?
+==================================================================
+  samples         : 30  (29 warm, 1 cold)
+
+  Observed clusters (warm invocations only):
+
+    n      mean     min        max        width
+    16     581.0    566.0      585.0      19.0 ms
+    9      682.4    674.0      687.0      13.0 ms
+    3      792.3    788.0      801.0      13.0 ms
+    1      897.0    897.0      897.0      0.0 ms
+
+  Spacing between centres : [101.4, 109.9, 104.7] ms
+  Mean step               : 105.3 ms  (sd 3.5 ms)
+  Mean cluster width      : 11.2 ms
+
+  -> Clusters are narrow and evenly spaced. The round trip does not
+     vary continuously; it takes a whole number of steps of about
+     105 ms.
+     A step that size is on the scale of one or two network round
+     trips, not of load variation in Lambda -- compute there varies
+     by only 59 ms between the fastest and slowest sample.
+
+  Does Lambda explain the step? Mean handler_ms per cluster:
+    cluster 0 (581 ms): handler 276.2 ms  (n=16)
+    cluster 1 (682 ms): handler 281.5 ms  (n=9)
+    cluster 2 (792 ms): handler 274.6 ms  (n=3)
+    cluster 3 (897 ms): handler 276.7 ms  (n=1)
+    -> if these are roughly equal, the step comes from the network,
+       not from compute time.
+
+  Comparison with one network round trip (58 ms, ICMP from the PC):
+    step / network RTT      : 1.82
+    floor excluding Lambda  : 288 ms  =  5.0 x network RTT
+    -> the step is one to two round trips, while the floor needs
+       several: the 6.6 kB publish is split into many TCP segments,
+       and the response passes through the broker again.
+
+  wrote docs/figures/e4b_rtt_quantised.png

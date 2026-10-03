@@ -1,0 +1,94 @@
+﻿
+==================================================================
+ E4b - Round trip Pico -> IoT Core -> Lambda -> Pico
+==================================================================
+ endpoint : <account-id>-ats.iot.eu-north-1.amazonaws.com:8883
+ publish  : imu/picoW_thing/window
+ subscribe: imu/picoW_thing/correction
+ window   : 400 samples at 200.0 Hz
+
+[wifi] associating with "<ssid>"
+[wifi] ip = <lan-ip>
+[sntp] syncing clock
+[sntp] unix time = 1787608222
+[dns ] resolving <account-id>-ats.iot.eu-north-1.amazonaws.com
+[dns ] <aws-ip>
+[tls ] building 2-way-auth config
+[tls ] config built in 19 ms
+[mqtt] connecting (TLS handshake starts after the SYN completes)
+[mqtt] connected in 6506 ms (TLS handshake included)
+[mqtt] subscribed to imu/picoW_thing/correction
+
+ trial   RTT(ms)  handler(ms)  compute(ms)  cold  note
+ ------  -------  -----------  -----------  ----  ----------------
+     0     2356        284.5        281.8   yes  
+     1      684        272.1        271.8    no  
+     2      583        279.3        279.0    no  
+     3      581        277.3        277.1    no  
+     4      788        270.6        270.4    no  
+     5      579        273.7        273.4    no  
+     6      788        272.4        272.2    no  
+     7      581        281.5        281.2    no  
+     8      684        269.7        269.5    no  
+     9      585        268.6        268.4    no  
+    10      680        266.8        266.6    no  
+    11      583        276.8        276.5    no  
+    12      684        320.6        320.4    no  
+    13      582        275.6        275.4    no  
+    14      685        315.5        315.3    no  
+    15      580        270.5        270.3    no  
+    16      687        273.8        273.6    no  
+    17      897        276.7        276.5    no  
+    18      674        278.5        278.2    no  
+    19      582        277.6        277.4    no  
+    20      584        276.1        275.8    no  
+    21      581        263.2        262.9    no  
+    22      680        261.5        261.3    no  
+    23      582        265.1        264.9    no  
+    24      801        280.8        280.5    no  
+    25      583        270.1        269.8    no  
+    26      566        276.4        276.2    no  
+    27      684        275.1        274.9    no  
+    28      582        313.0        312.7    no  
+    29      582        275.1        274.8    no  
+
+==================================================================
+ Rezultatet
+==================================================================
+  dritare te derguara : 30
+  pergjigje te vlefshme: 30
+  pa pergjigje         : 0
+  pergjigje te vjetra  : 0
+
+  Round trip (i matur me nje ore te vetme, time_us_64)
+    min       566.6 ms
+    p50       585.6 ms
+    mesat.    702.7 ms
+    p90       788.4 ms
+    p99      2356.4 ms
+    max      2356.4 ms
+
+  Dekompozimi (mesatare)
+    RTT total                   702.7 ms   100.0 %
+      nga to: ESKF ne Lambda    277.6 ms    39.5 %
+      handler i plote           277.9 ms    39.6 %
+      mbetja (rrjet+broker)     424.7 ms    60.4 %
+
+    Mbetja NUK eshte vetem rrjet: perfshin edhe TLS-in ne te dy
+    anet, brokerin, nisjen e rregullit dhe publikimin e kthimit.
+    Raportohet si mbetje sepse aq mund te matet me nje ore te vetme.
+
+  Cold start: 1 nga 30 thirrje
+    RTT mesatar, cold :   2356.4 ms  (n=1)
+    RTT mesatar, warm :    645.7 ms  (n=29)
+    denimi i cold start : 1710.7 ms
+
+  Vjetersia e korrigjimit kur mberrin
+    dritarja                 2000.0 ms
+    round trip                702.7 ms
+    gjithsej                 2702.7 ms
+    -> aq perpara eshte gjendja aktuale ndaj asaj qe korrigjimi
+       pershkruan. Kjo eshte madhesia qe e ben problemin OOSM.
+
+[done]
+

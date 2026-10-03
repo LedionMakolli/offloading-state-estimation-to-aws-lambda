@@ -1,0 +1,34 @@
+
+Faza A (sekuenciale)
+----------------------------------------------------------------------
+  thirrje            : 10  (0 cold, 10 warm)
+  mjedise te dallueshme: 1
+  te gjitha u publikuan: PO
+  compute_ms (ESKF)  : n=10  min 256.2  median 259.7  max 265.1
+  publish_ms  cold   : n/a
+  publish_ms  warm   : n=10  min 7.0  median 9.0  max 12.4
+  Init Duration      : n/a
+  Duration (raportuar): n=10  min 268.4  median 269.9  max 276.5
+
+Faza B (shperthim)
+----------------------------------------------------------------------
+  thirrje            : 10  (8 cold, 2 warm)
+  mjedise te dallueshme: 9
+  te gjitha u publikuan: PO
+  compute_ms (ESKF)  : n=10  min 219.7  median 264.8  max 307.1
+  publish_ms  cold   : n=8  min 415.5  median 456.7  max 761.4
+  publish_ms  warm   : n=2  min 9.5  median 10.3  max 11.1
+  Init Duration      : n=8  min 443.5  median 515.6  max 533.1
+  Duration (raportuar): n=10  min 274.0  median 728.7  max 993.4
+
+Kostoja e vertete e nje cold start-i
+----------------------------------------------------------------------
+  Init Duration e raportuar        :   501.2 ms (mesatarja e 8)
+  denim shtese ne publikimin e pare:   489.9 ms
+  kosto reale e cold start-it      :   991.1 ms
+  nenvleresim i CloudWatch-it      :    49.4 %
+
+  Arsyeja: boto3 e nderton klientin, i zgjidh kredencialet dhe e hap
+  TLS-in drejt iot-data vetem ne thirrjen e pare, pra pas fazes init.
+  Kjo kohe i shtohet vjetersise se korrigjimit por nuk shfaqet ne
+  Init Duration, dhe as ne Duration te ndonje thirrjeje te mevonshme.
