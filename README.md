@@ -594,6 +594,15 @@ state that limitation explicitly in Threats to Validity. Only the transducer is
 simulated: RTOS timing, compute cost, the network stack and all latency figures
 above are measured on real hardware and a real AWS deployment.
 
+## AI assistance
+
+Claude (Anthropic) was used as an assistant throughout this project: for
+language editing and translation, for locating relevant literature and
+documentation, and as a discussion partner during the research.
+
+The research question, the experimental design, the hardware measurements and
+the interpretation of the results are the author's own.
+
 ## License
 
 Code is released under the MIT License, see [LICENSE](LICENSE).
